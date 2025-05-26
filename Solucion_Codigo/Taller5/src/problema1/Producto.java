@@ -6,9 +6,9 @@ package problema1;
  */
 public class Producto {
 
-    private String nombre;
-    private double precio;
-    private int cantidad;
+    String nombre;
+    double precio;
+    int cantidad;
 
     public Producto(String nombre, double precio, int cantidad) {
         this.nombre = nombre;

@@ -1,5 +1,4 @@
 package problema1;
-
 /**
  *
  * @author jdgua

@@ -1,7 +1,4 @@
 package problema1;
-
-import java.util.ArrayList;
-
 /**
  *
  * @author jdgua
