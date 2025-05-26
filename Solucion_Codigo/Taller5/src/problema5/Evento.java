@@ -14,7 +14,7 @@ public class Evento {
     boolean usaArmasN;
     int bajasP;
 
-    public Evento(String nombre, String fecha, String ubicacion, String tipo, String descripcion, boolean usaArmasNucleares, int bajasPorcentuales) {
+    public Evento(String nombre, String fecha, String ubicacion, String tipo, String descripcion, boolean usaArmasN, int bajasP) {
         this.nombre = nombre;
         this.fecha = fecha;
         this.ubicacion = ubicacion;

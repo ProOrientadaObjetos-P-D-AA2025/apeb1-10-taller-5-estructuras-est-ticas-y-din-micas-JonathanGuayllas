@@ -14,14 +14,30 @@ public class Conflicto {
     String estadoA;
     ArrayList<Evento> eventos;
 
-    public Conflicto(String nombre, ArrayList<String> paisesInvolucrados, String fechaInicio) {
+    public Conflicto(String nombre, ArrayList<String> paisesI, String fechaInicio) {
         this.nombre = nombre;
-        this.paisesI = paisesInvolucrados;
+        this.paisesI = paisesI;
         this.fechaI = fechaInicio;
         this.estadoA = "Activo";
         this.eventos = new ArrayList<>();
     }
 
+    public ArrayList<Evento> consultarEventos() {
+        return eventos;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getEstadoActual() {
+        return estadoA;
+    }
+
+    public ArrayList<String> getPaisesInvolucrados() {
+        return paisesI;
+    }
+    
     public void agregarEvento(Evento evento) {
         eventos.add(evento);
         actualizarEstado();
@@ -36,20 +52,20 @@ public class Conflicto {
             }
         }
 
-        double porcentajePaisesConBatallas = (double) paisesConBatallas.size() / totalPaises;//hago que el valor que me envie pase de String a double
+        double porcentajePCB = (double) paisesConBatallas.size() / totalPaises;//hago que el valor que me envie pase de String a double
 
-        if (porcentajePaisesConBatallas > 0.5) {
+        if (porcentajePCB > 0.5) {
             estadoA = "Guerra Mundial";
-        } else if (porcentajePaisesConBatallas >= 0.3) {
+        } else if (porcentajePCB >= 0.3) {
             estadoA = "Convocar a la ONU a reunión urgente";
         }
 
         // Lista de países de primer mundo 
-        String[] paisesPrimerMundo = {"EEUU", "Rusia", "Reino Unido", "Francia"};
+        String[] paisesPM = {"EEUU", "Rusia", "Reino Unido", "Francia"};
 
         boolean batallasNucleares = false;
         for (Evento evento : eventos) {
-            for (String pais : paisesPrimerMundo) {
+            for (String pais : paisesPM) {
                 if (evento.getUbicacion().equals(pais) && evento.siUsaArmasNucleares()) {//Si se usa armas nucleares variabble booleana
                     batallasNucleares = true;
                     break;
@@ -68,23 +84,7 @@ public class Conflicto {
             }
         }
     }
-
-    public ArrayList<Evento> consultarEventos() {
-        return eventos;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public String getEstadoActual() {
-        return estadoA;
-    }
-
-    public ArrayList<String> getPaisesInvolucrados() {
-        return paisesI;
-    }
-
+    
     @Override
     public String toString() {
         return "Conflicto{" + "nombre=" + nombre + ", paises Involucrados=" + paisesI
