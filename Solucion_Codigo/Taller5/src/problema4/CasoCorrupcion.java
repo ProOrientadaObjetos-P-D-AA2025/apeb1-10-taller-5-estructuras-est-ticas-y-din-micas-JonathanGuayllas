@@ -24,14 +24,6 @@ public class CasoCorrupcion {
         this.personasImplicadas = new ArrayList<>();
     }
 
-    public void actualizarEstado() {
-        if (this.diasT > 14) {
-            this.estado = "Urgente";
-        } else if (diasT > 7) {
-            this.estado = "Alerta";
-        }
-    }
-
     public String getNombreCaso() {
         return nombreC;
     }
@@ -50,6 +42,14 @@ public class CasoCorrupcion {
 
     public ArrayList<PersonaImplicada> getPersonasImplicadas() {
         return personasImplicadas;
+    }
+    
+    public void actualizarEstado() {
+        if (this.diasT > 14) {
+            this.estado = "Urgente";
+        } else if (diasT > 7) {
+            this.estado = "Alerta";
+        }
     }
 
     public void agregarPersona(PersonaImplicada persona) {

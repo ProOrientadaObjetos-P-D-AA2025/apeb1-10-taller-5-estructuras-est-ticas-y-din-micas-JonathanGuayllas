@@ -51,6 +51,7 @@ public class EjecutorProblema4 {
             System.out.println("=================================================================================");
             System.out.println("DESEAS REGISTRAR OTRO CASO? ( SI/NO)");
             opcion = entrada.next();
+            entrada.nextLine();
             if (opcion.equalsIgnoreCase("SI")) {
                 numeroCaso++;
             } else if (opcion.equalsIgnoreCase("NO")) {

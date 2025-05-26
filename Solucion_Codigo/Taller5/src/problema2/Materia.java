@@ -9,10 +9,10 @@ public class Materia {
     String nombreM, info;
     double acd, ape, aa, total;
 
-    public Materia(String nombreM, double acd, double aoe, double aa) {
+    public Materia(String nombreM, double acd, double ape, double aa) {
         this.nombreM = nombreM;
         this.acd = acd;
-        this.ape = aoe;
+        this.ape = ape;
         this.aa = aa;
     }
 
@@ -32,12 +32,12 @@ public class Materia {
         this.acd = acd;
     }
 
-    public double getAoe() {
+    public double getApe() {
         return ape;
     }
 
-    public void setAoe(double aoe) {
-        this.ape = aoe;
+    public void setApe(double aoe) {
+        this.ape = ape;
     }
 
     public double getAa() {
