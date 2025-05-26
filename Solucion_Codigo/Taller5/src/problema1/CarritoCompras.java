@@ -8,67 +8,66 @@ import java.util.ArrayList;
  */
 public class CarritoCompras {
 
-    ArrayList<Producto> productosCarrito = new ArrayList<>();
-    ArrayList<Producto> productosStock = new ArrayList<>();
-    double total;
-    double descuento;
-    boolean existe;
+    Producto[] productos;
+    int[] cantidades;
+    int numeroP;
 
-    public void agregarProducto(String nombre, int cantidad) {
-        existe = false;
-        for (Producto p : productosStock) {
-            if (p.getNombreP().equalsIgnoreCase(nombre)) {
-                existe = true;
-                if (p.getCantidadP() >= cantidad) {
-                    Producto productoC = new Producto(p.getNombreP(),
-                            p.getPrecioP(), p.getCantidadP());
-                    productosCarrito.add(productoC);
-                    System.out.println("Producto añadido al carrito");
-                } else {
-                    System.out.println("No hay productos suficientes disponibles");
-                }
-                break;
-            }
-            if (!existe);
-            System.out.println("Ese producto no existe");
+    public CarritoCompras() {
+        this.productos = new Producto[100]; // Capacidad máxima de 100 productos en el carrito
+        this.cantidades = new int[100];
+        this.numeroP = 0;
+    }
+
+    public void agregarProducto(Producto producto, int cantidad) {
+        if (producto.getCantidad() >= cantidad) {
+            productos[numeroP] = producto;
+            cantidades[numeroP] = cantidad;
+            numeroP++;
+            System.out.println("Agregado " + cantidad + " "+ producto.getNombre()
+                    + " al carrito.");
+        } else {
+            System.out.println("No hay suficiente cantidad de " + producto.getNombre()
+                    + " disponible.");
         }
     }
 
     public double calcularTotal() {
-        for (Producto pT : productosCarrito) {
-            total = total + (pT.getCantidadP() * pT.getPrecioP());
+        double total = 0;
+        for (int i = 0; i < numeroP; i++) {
+            total += productos[i].getPrecio() * cantidades[i];
         }
         return total;
     }
 
-    public void realizarPago(double montoP, double porcentjaD) {
-        total = calcularTotal();
+    public void realizarPago(double montoPagado, double descuento) {
+        double total = calcularTotal();
+        double totalConDescuento = total - descuento;
 
-        if (total > 1000) {
-            descuento = total * porcentjaD;
-            System.out.println("Tiene un descuento del " + porcentjaD + "% : " + descuento);
-        }
-
-        if (montoP >= total) {
-            System.out.println("Gracias por su compra");
-            for (Producto comprado : productosCarrito) {
-                for (Producto actualizarS : productosStock) {
-                    if (actualizarS.getNombreP().equalsIgnoreCase(comprado.getNombreP())) {
-                        actualizarS.setCantidadP(actualizarS.getCantidadP() - comprado.getCantidadP());
-                    }
-                }
+        if (montoPagado >= totalConDescuento) {
+            for (int i = 0; i < numeroP; i++) {
+                productos[i].reducirCantidad(cantidades[i]);
             }
+            double cambio = montoPagado - totalConDescuento;
+            System.out.println("Pago realizado con éxito. Su cambio es: $" + cambio
+                    + ". Gracias por su compra!");
         } else {
-            total = (total - descuento) - montoP;
-            System.out.println("Le falta la siguiente cantidad de dinero $:" + total);
+            double cantidadFaltante = totalConDescuento - montoPagado;
+            System.out.println("Pago insuficiente. Faltan $" + cantidadFaltante);
         }
-
     }
 
     public void mostrarDetalleCompra() {
-        System.out.println("---- Detalles de su compra ----");
-        for (Producto imprimir : productosCarrito) {
-            System.out.println(imprimir.toString());
+        System.out.println("Detalle de la compra:");
+        for (int i = 0; i < numeroP; i++) {
+            System.out.println(cantidades[i] + " x " + productos[i].getNombre()
+                    + " - $" + productos[i].getPrecio() + " cada uno");
         }
     }
+
+    @Override
+    public String toString() {
+        return "CarritoCompras{" + "productos=" + productos + ", cantidades="
+                + cantidades + ", numeroP=" + numeroP + '}';
+    }
+
 }

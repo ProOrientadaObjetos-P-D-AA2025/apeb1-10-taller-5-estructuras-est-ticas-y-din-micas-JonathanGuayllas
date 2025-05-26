@@ -11,9 +11,8 @@ public class Estudiante {
 
     String nombre;
     int edad;
-    double notaR = 0, totalR;
+    double notaR = 0, totalR, total;
     Materia materia;
-    double total;
 
     public Estudiante(String nombre, int edad, Materia materia) {
         this.nombre = nombre;

@@ -6,10 +6,9 @@ package problema3;
  */
 public class Departamento {
 
-    String nombre;
+    String nombre,categoria;
     int numeroE;
     double produccionA;
-    String categoria;
 
     public Departamento(String nombre, int numeroE, double produccionA, String categoria) {
         this.nombre = nombre;

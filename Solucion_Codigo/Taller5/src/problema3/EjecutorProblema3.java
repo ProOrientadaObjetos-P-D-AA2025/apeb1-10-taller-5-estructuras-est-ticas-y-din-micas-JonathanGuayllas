@@ -12,8 +12,7 @@ public class EjecutorProblema3 {
 
         Scanner entrada = new Scanner(System.in);
 
-        String n, r, d;
-        String nD;
+        String n, r, d, nD;
         String c = "";
         int nE;
         double pA;
